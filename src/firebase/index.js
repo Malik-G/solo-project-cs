@@ -16,5 +16,5 @@ var config = {
  const storage = firebase.storage();
 
  export {
-    storage, firbase as default
+    storage, firebase as default
  }
