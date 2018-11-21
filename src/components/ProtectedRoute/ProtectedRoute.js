@@ -20,14 +20,14 @@ const ProtectedRoute = (props) => {
   const {
     // Alias prop 'component' as 'ComponentToProtect'
     component: ComponentToProtect,
-    user,
+    userReducer,
     loginMode,
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
-  if(user.id) {
+  if(userReducer.id) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
@@ -58,7 +58,7 @@ const ProtectedRoute = (props) => {
 // const mapStateToProps = ({ user, loginMode }) => ({ user, loginMode });
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    userReducer: state.userReducer,
     loginMode: state.loginMode,
   }
 }

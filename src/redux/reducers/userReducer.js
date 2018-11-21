@@ -9,6 +9,5 @@ const userReducer = (state = {}, action) => {
   }
 };
 
-// user will be on the redux state at:
-// state.user
+// the user will be on the redux state at -> state.userReducer
 export default userReducer;

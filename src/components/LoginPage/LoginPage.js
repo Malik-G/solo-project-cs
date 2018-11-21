@@ -17,9 +17,9 @@ class LoginPage extends Component {
           username: this.state.username,
           password: this.state.password,
         },
-      });
+      }); //inside of loginLogoutSaga
     } else {
-      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' });
+      this.props.dispatch({ type: 'LOGIN_INPUT_ERROR' }); //inside of errorsReducer
     }
   } // end login
 
@@ -77,7 +77,7 @@ class LoginPage extends Component {
           <button
             type="button"
             className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE' })}} //inside of loginModeReducer
           >
             Register
           </button>

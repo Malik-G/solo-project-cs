@@ -47,9 +47,9 @@ class UserPage extends Component {
       return (
          <div>
             <h1 id="welcome">
-               Welcome, { this.props.user.username }!
+               Welcome, { this.props.userReducer.username }!
             </h1>
-            <p>Your ID is: {this.props.user.id}</p>
+            <p>Your ID is: {this.props.userReducer.id}</p>
             <progress value={this.state.progress} max="100"/>
             <br/>
             <input type="file" onChange={this.selectImage}/>
@@ -68,7 +68,7 @@ class UserPage extends Component {
 // if you wanted you could write this code like this:
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
-  user: state.user,
+  userReducer: state.userReducer,
 });
 
 // this allows us to use <App /> in index.js
