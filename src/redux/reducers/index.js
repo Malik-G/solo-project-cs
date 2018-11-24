@@ -14,8 +14,9 @@ import portfolioReducer from './portfolioReducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // contains a value of 'login' or 'registration' to control which screen is shown
-  userReducer, // contains an id and username if someone is logged in
+  
   portfolioReducer, // contains a SQL result from the /api/portfolio GET request
+  userReducer, // contains an id and username if someone is logged in
 });
 
 export default rootReducer;

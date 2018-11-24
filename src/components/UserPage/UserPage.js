@@ -69,6 +69,7 @@ class UserPage extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
   userReducer: state.userReducer,
+  portfolioReducer: state.portfolioReducer
 });
 
 // this allows us to use <App /> in index.js

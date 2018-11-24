@@ -40,6 +40,7 @@ const Nav = (props) => (
 // const mapStateToProps = ({ user }) => ({ user });
 const mapStateToProps = state => ({
   userReducer: state.userReducer,
+  portfolioReducer: state.portfolioReducer
 });
 
 export default connect(mapStateToProps)(Nav);

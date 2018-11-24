@@ -49,7 +49,7 @@ class App extends Component {
               component={UserPage}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
-            they will see the info page instead. */}
+            they will see their portfolio page instead. */}
             <ProtectedRoute
               exact
               path="/user-portfolio"
