@@ -109,17 +109,11 @@ class CommunityPage extends Component {
    }
 }
 
-/* {this.props.portfolioReducer.map( (card) => (
-               <div>
-                  <img src={card.image_url}/>
-               </div>
-            ))} */
-
 
 const mapStateToProps = state => ({
-   //portfolioReducer: state.portfolioReducer,
    userReducer: state.userReducer,
    communityReducer: state.communityReducer,
+   //portfolioReducer: state.portfolioReducer,
 });
 
 // const mapStateToProps = reduxState => ({
