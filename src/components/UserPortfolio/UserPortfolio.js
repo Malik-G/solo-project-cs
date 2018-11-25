@@ -64,7 +64,7 @@ const inlineBlock = {
 const mapStateToProps = state => ({
    portfolioReducer: state.portfolioReducer,
    userReducer: state.userReducer,
-   communityReducer: state.communityReducer
+   //communityReducer: state.communityReducer
 });
 
 // const mapStateToProps = reduxState => ({
