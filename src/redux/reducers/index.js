@@ -3,6 +3,7 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import userReducer from './userReducer';
 import portfolioReducer from './portfolioReducer';
+import communityReducer from './communityReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -14,7 +15,7 @@ import portfolioReducer from './portfolioReducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   loginMode, // contains a value of 'login' or 'registration' to control which screen is shown
-  
+  communityReducer,
   portfolioReducer, // contains a SQL result from the /api/portfolio GET request
   userReducer, // contains an id and username if someone is logged in
 });

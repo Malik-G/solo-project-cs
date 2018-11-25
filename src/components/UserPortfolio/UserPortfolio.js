@@ -6,6 +6,7 @@ class UserPortfolio extends Component {
    
    componentDidMount(){
       this.props.dispatch({type: "GET_USER_PORTFOLIO", payload: this.props.userReducer.id}); //inside of portfolioSaga
+      //this.props.dispatch({type: "GET_COMMUNITY"}); //inside of communitySaga
    }
 
    addCard = () => {
@@ -27,40 +28,47 @@ class UserPortfolio extends Component {
       //    imagesArray = <span></span>
       // }
       
-      let imagesArray = this.props && this.props.portfolioReducer.length > 0 ?
+      let portfolioArray = this.props && this.props.portfolioReducer.length > 0 ?
         this.props.portfolioReducer.map(card=>
-         <div>
+         <div style={inlineBlock}>
             <img style={sizeImg} src={card.image_url}/>
          </div>
         ) : <span></span>;
       
       return(
          <div>
-            <button onClick={this.addCard}>Add Card</button>
-            {imagesArray}
+            <section>
+               <h1>Your Portfolio</h1>
+               <button onClick={this.addCard}>Add Card</button><br/>
+            </section>
+            {portfolioArray}
             {/* {this.props.portfolioReducer.map( (card) => (
                <div>
                   <img src={card.image_url}/>
                </div>
             ))} */}
-            <p>Your Portfolio</p>
          </div>
       );
    }
 }
-
-// const mapStateToProps = reduxState => ({
-//    reduxState
-// });
 
 const sizeImg = {
    height: 200,
    width: 200
 }
 
+const inlineBlock = {
+   display: 'inline-block'
+}
+
 const mapStateToProps = state => ({
    portfolioReducer: state.portfolioReducer,
    userReducer: state.userReducer,
+   communityReducer: state.communityReducer
 });
+
+// const mapStateToProps = reduxState => ({
+//    reduxState
+// });
 
 export default connect(mapStateToProps)(UserPortfolio);

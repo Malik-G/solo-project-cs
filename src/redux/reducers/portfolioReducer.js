@@ -2,7 +2,7 @@ const portfolioReducer = (state = {}, action) => {
   switch (action.type) {
     case 'PORTFOLIO':
       return action.payload;
-    case 'ALL_PORTFOLIOS':
+   case 'USER_PORTFOLIO':
       return action.payload;
     default:
       return state;

@@ -16,7 +16,7 @@ router.get('/:id', (req, res) => {
      });
  });
 
-// GET all card from every user
+// GET all cards from every user
 router.get('/', (req, res) => {
    const queryText = 'SELECT * FROM card_info';
    pool.query(queryText)
