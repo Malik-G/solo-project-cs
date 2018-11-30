@@ -3,7 +3,9 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import userReducer from './userReducer';
 import portfolioReducer from './portfolioReducer';
+import watchListReducer from './watchListReducer';
 import communityReducer from './communityReducer';
+//import memberUsernameReducer from './memberUsernameReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,6 +20,8 @@ const rootReducer = combineReducers({
   communityReducer,
   portfolioReducer, // contains a SQL result from the /api/portfolio GET request
   userReducer, // contains an id and username if someone is logged in
+  watchListReducer,
+  //memberUsernameReducer
 });
 
 export default rootReducer;

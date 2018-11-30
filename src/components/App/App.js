@@ -15,7 +15,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
+import UserTradeBlock from '../UserTradeBlock/UserTradeBlock';
 import UserPortfolio from '../UserPortfolio/UserPortfolio';
+import MemberTradeBlock from '../MemberTradeBlock/MemberTradeBlock';
+import MemberPortfolio from '../MemberPortfolio/MemberPortfolio';
+import WatchList from '../WatchList/WatchList';
 import CommunityPage from '../CommunityPage/CommunityPage';
 
 import './App.css';
@@ -45,6 +49,11 @@ class App extends Component {
               path="/community"
               component={CommunityPage}
             />
+            <Route
+              exact
+              path="/member-portfolio/:id"
+              component={MemberPortfolio}
+            />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -58,8 +67,23 @@ class App extends Component {
             they will see their portfolio page instead. */}
             <ProtectedRoute
               exact
+              path="/trade-block"
+              component={UserTradeBlock}
+            />
+            <ProtectedRoute
+              exact
               path="/user-portfolio"
               component={UserPortfolio}
+            />
+            <ProtectedRoute
+              exact
+              path="/watch-list"
+              component={WatchList}
+            />
+            <ProtectedRoute
+              exact
+              path="/member-trade-block/:id"
+              component={MemberTradeBlock}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

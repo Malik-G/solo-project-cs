@@ -9,20 +9,18 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 
 const styling = theme => ({
-   sizeBtn: {
+   customBtn: {
       height: 10,
-      width: 80
-   },
-   btnText: {
+      width: 80,
       fontWeight: 'bold',
       fontSize: 10,
       color: 'white'
    },
-   backgroundGreen: {
-      background: 'green'
+   backgroundBlack: {
+      background: 'black'
    },
-   backgroundOrange: {
-      background: 'orange'
+   backgroundGray: {
+      background: 'dimgray'
    },
    font20: {
       fontSize: 20
@@ -41,6 +39,18 @@ class CommunityPage extends Component {
    
    componentDidMount(){
       this.props.dispatch({type: "GET_COMMUNITY"}); //inside of communitySaga
+   }
+
+   goToPortfolio = (id) => {
+      return (event) => {
+         this.props.history.push(`/member-portfolio/${id}`)
+      }
+   }
+
+   goToTradeBlock = (id) => {
+      return (event) => {
+         this.props.history.push(`/member-trade-block/${id}`)
+      }
    }
    
    render(){
@@ -64,21 +74,21 @@ class CommunityPage extends Component {
       
       let communityInsert = this.props && this.props.communityReducer.length > 0 ?
         this.props.communityReducer.map(member=>
-            <TableRow>
+            <TableRow key={member.id}>
                <TableCell className={`${classes.font20} ${classes.alignCenter}`}>
                   <div className={classes.marginTop}>
                      {member.username}
                   </div>
                   <div className={classes.marginTop}>
-                     <Button variant="contained" color="default" className={`${classes.sizeBtn} ${classes.backgroundGreen} ${classes.btnText}`}>Portfolio</Button>
-                     <Button variant="contained" color="default" className={`${classes.sizeBtn} ${classes.backgroundOrange} ${classes.btnText}`}>Trade Block</Button>
+                     <Button onClick={this.goToPortfolio(member.id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundBlack}`}>Portfolio</Button>
+                     <Button onClick={this.goToTradeBlock(member.id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
                   </div>
                </TableCell>
                <TableCell className={classes.alignCenter}>{member.count}</TableCell>
                <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
                <TableCell className={classes.alignCenter}>Top Card #2</TableCell>
                <TableCell className={classes.alignCenter}>
-                  <Button variant="contained" color="primary" className={classes.sizeBtn}>Message</Button>
+                  <Button variant="contained" color="primary" className={classes.customBtn}>Message</Button>
                </TableCell>
             </TableRow>
         ) : <span></span>;
@@ -86,8 +96,7 @@ class CommunityPage extends Component {
       return(
          <div>
          <section>
-            <h1>Community</h1>
-            <button onClick={this.addCard}>Add Card</button>
+            <h1 className={classes.alignCenter}>Community</h1>
          </section>
          <Table>
             <TableHead>

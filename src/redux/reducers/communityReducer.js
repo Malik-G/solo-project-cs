@@ -1,4 +1,4 @@
-const communityReducer = (state = {}, action) => {
+const communityReducer = (state = [], action) => {
    switch (action.type) {
      case 'COMMUNITY':
        return action.payload;

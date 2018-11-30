@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, call, takeLatest } from 'redux-saga/effects';
 
-function* getCommunity(action) {
+function* getCommunitySaga(action) {
    try {
       console.log('IN getCommunity SAGA...') ;
       const response = yield call(axios.get, `/api/community`);
@@ -13,7 +13,7 @@ function* getCommunity(action) {
  }
 
 function* communitySaga() {
-  yield takeLatest('GET_COMMUNITY', getCommunity);
+  yield takeLatest('GET_COMMUNITY', getCommunitySaga);
 }
 
 export default communitySaga;

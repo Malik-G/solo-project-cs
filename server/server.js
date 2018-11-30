@@ -11,7 +11,9 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const portfolioRouter = require('./routes/portfolio.router');
+const memberPortfolioRouter = require('./routes/memberPortfolio.router')
 const communityRouter = require('./routes/community.router');
+const watchListRouter = require('./routes/watchList.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,7 +29,9 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/portfolio', portfolioRouter);
-app.use('/api/community', communityRouter)
+app.use('/api/member-portfolio', memberPortfolioRouter);
+app.use('/api/community', communityRouter);
+app.use('/api/watch-list', watchListRouter)
 
 // Serve static files
 app.use(express.static('build'));
