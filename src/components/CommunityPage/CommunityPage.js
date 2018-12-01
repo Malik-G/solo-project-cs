@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import MessageButton from './MessageButton'
 
 const styling = theme => ({
    customBtn: {
@@ -60,17 +61,6 @@ class CommunityPage extends Component {
       console.log(this.props.communityReducer);
 
       const {classes} = this.props
-
-      // let imagesArray;
-      // if(this.props && this.props.portfolioReducer.length > 0 ){
-      //    this.props.portfolioReducer.map(card=>
-      //       imagesArray = <div>
-      //          <img src={card.image_url}/>
-      //       </div>
-      // )}
-      // else { 
-      //    imagesArray = <span></span>
-      // }
       
       let communityInsert = this.props && this.props.communityReducer.length > 0 ?
         this.props.communityReducer.map(member=>
@@ -80,15 +70,16 @@ class CommunityPage extends Component {
                      {member.username}
                   </div>
                   <div className={classes.marginTop}>
-                     <Button onClick={this.goToPortfolio(member.id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundBlack}`}>Portfolio</Button>
-                     <Button onClick={this.goToTradeBlock(member.id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
+                     <Button onClick={this.goToPortfolio(member.id)} className={`${classes.customBtn} ${classes.backgroundBlack}`}>Portfolio</Button>
+                     <Button onClick={this.goToTradeBlock(member.id)} className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
                   </div>
                </TableCell>
                <TableCell className={classes.alignCenter}>{member.count}</TableCell>
                <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
                <TableCell className={classes.alignCenter}>Top Card #2</TableCell>
                <TableCell className={classes.alignCenter}>
-                  <Button variant="contained" color="primary" className={classes.customBtn}>Message</Button>
+                  <MessageButton member={member.id}/>
+                  {/* <Button variant="contained" color="primary" className={classes.customBtn}>Message</Button> */}
                </TableCell>
             </TableRow>
         ) : <span></span>;

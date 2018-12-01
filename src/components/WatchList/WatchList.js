@@ -74,59 +74,74 @@ class WatchList extends Component {
       }
    }
 
+   removeWatch = (id) => {
+      return (event) => {
+         this.props.dispatch({
+            type: 'REMOVE_WATCH_LIST_ITEM',
+            payload: {
+               watch_list_owner: this.props.userReducer.id,
+               watch_list_id: id,
+            }
+         })
+      }
+   }
+
    render(){
-      
-      console.log(this.state.user);
-      console.log(this.props.memberUsername[0])
 
       const {classes} = this.props
 
-      // let imagesArray;
-      // if(this.props && this.props.portfolioReducer.length > 0 ){
-      //    this.props.portfolioReducer.map(card=>
-      //       imagesArray = <div>
-      //          <img src={card.image_url}/>
-      //       </div>
-      // )}
-      // else { 
-      //    imagesArray = <span></span>
-      // }
+      let watchListInsert;
+      let tableHeadInfo;
       
+      if(this.props.watchListReducer.length === 0){
+         tableHeadInfo = <br></br>
+         watchListInsert = <p className={classes.alignCenter}>No cards currently being watched...</p>
+      }
+      else {
+         tableHeadInfo =
+            <TableHead>
+               <TableRow >
+                  <TableCell className={classes.alignCenter}>Card</TableCell>
+                  <TableCell className={classes.alignCenter}>User</TableCell>
+                  <TableCell className={classes.alignCenter}>Price</TableCell>
+                  <TableCell className={classes.alignCenter}>Date Posted</TableCell>
+                  <TableCell className={classes.alignCenter}>Purchase</TableCell>
+                  <TableCell className={classes.alignCenter}>Unwatch</TableCell>
+               </TableRow>
+            </TableHead>
+         
+         watchListInsert = this.props && this.props.watchListReducer.length > 0 ?
+            this.props.watchListReducer.map(card=>
+               <TableRow key={card.id}>
+                  <TableCell className={classes.alignCenter}>
+                     <img onClick={this.cardInfo(card)} src={card.image_url} className={classes.sizeImg} />
+                  </TableCell>
+                  <TableCell className={`${classes.font20} ${classes.alignCenter}`}>
+                     <div className={classes.marginTop}>
+                        {card.card_owner}
+                     </div>
+                     <div className={classes.marginTop}>
+                        {/* user_id refers to the owner of the card being watched */}
+                        <Button onClick={this.goToPortfolio(card.user_id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundBlack}`}>Portfolio</Button>
+                        <Button onClick={this.goToTradeBlock(card.user_id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
+                     </div>
+                  </TableCell>
+                  <TableCell className={classes.alignCenter}>{card.price}</TableCell>
+                  <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
+                  <TableCell className={classes.alignCenter}>
+                     <Button  className={`${classes.customBtn} ${classes.backgroundGreen}`} variant="contained">Add to Cart</Button>
+                  </TableCell>
+                  <TableCell className={classes.alignCenter}>
+                     <Button  onClick={this.removeWatch(card.watch_list_id)} className={`${classes.customBtn} ${classes.backgroundRed}`} variant="contained">UnWatch</Button>
+                  </TableCell>
+               </TableRow>
+         ) : <span></span>;
+      }
       
-      
-      let watchListInsert = this.props && this.props.watchListReducer.length > 0 ?
-         this.props.watchListReducer.map(card=>
-            <TableRow key={card.id}>
-               <TableCell className={classes.alignCenter}>
-                  <img src={card.image_url} className={classes.sizeImg} />
-               </TableCell>
-               <TableCell className={`${classes.font20} ${classes.alignCenter}`}>
-                  <div className={classes.marginTop}>
-                     {card.card_owner}
-                  </div>
-                  <div className={classes.marginTop}>
-                     {/* user_id refers to the owner of the card being watched */}
-                     <Button onClick={this.goToPortfolio(card.user_id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundBlack}`}>Portfolio</Button>
-                     <Button onClick={this.goToTradeBlock(card.user_id)} variant="contained" className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
-                  </div>
-               </TableCell>
-               <TableCell className={classes.alignCenter}>{card.price}</TableCell>
-               <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
-               <TableCell className={classes.alignCenter}>
-                  <Button  className={`${classes.customBtn} ${classes.backgroundGreen}`} variant="contained">Add to Cart</Button>
-               </TableCell>
-               <TableCell className={classes.alignCenter}>
-                  <Button  className={`${classes.customBtn} ${classes.backgroundRed}`} variant="contained">UnWatch</Button>
-               </TableCell>
-            </TableRow>
-        ) : <span></span>;
-
-      let headerDisplay = this.props && this.props.watchListReducer.length > 0 ?
-      
-       <div className={`${classes.alignCenter} ${classes.margin} ${classes.marginTop}`}>
-          <h1 className={classes.alignCenter}>Your Watch List</h1>
-       </div>
-      : <span></span>; 
+      let headerDisplay =
+         <div className={`${classes.alignCenter} ${classes.margin} ${classes.marginTop}`}>
+            <h1 className={classes.alignCenter}>Your Watch List</h1>
+         </div>
       
       return(
          <div>
@@ -134,17 +149,8 @@ class WatchList extends Component {
                {headerDisplay}
             </section>
             <Table>
-               <TableHead>
-                  <TableRow >
-                     <TableCell className={classes.alignCenter}>Card</TableCell>
-                     <TableCell className={classes.alignCenter}>User</TableCell>
-                     <TableCell className={classes.alignCenter}>Price</TableCell>
-                     <TableCell className={classes.alignCenter}>Date Posted</TableCell>
-                     <TableCell className={classes.alignCenter}>Purchase</TableCell>
-                     <TableCell className={classes.alignCenter}>Unwatch</TableCell>
-                  </TableRow>
-               </TableHead>
-               <TableBody >
+               {tableHeadInfo}
+               <TableBody>
                   {watchListInsert}
                </TableBody>
             </Table>

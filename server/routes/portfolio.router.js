@@ -61,14 +61,14 @@ router.delete('/delete/', (req, res) => {
 router.put('/edit/:id', (req, res) =>{
    let reqId = req.params.id;
    let dataObj = req.body;
-   let sqlText = '';
+   let queryText = '';
    let noImageArr = [dataObj.sport, dataObj.athlete, dataObj.team, dataObj.card_brand, dataObj.details, reqId];
    let imageArr = [dataObj.sport, dataObj.athlete, dataObj.team, dataObj.card_brand, dataObj.details, dataObj.url, reqId];
    
    if(dataObj.url === ''){
-       sqlText = `UPDATE card_info SET sport=$1, athlete=$2, team=$3, card_brand=$4, 
+       queryText = `UPDATE card_info SET sport=$1, athlete=$2, team=$3, card_brand=$4, 
                   details=$5 WHERE card_id=$6;`;
-      pool.query(sqlText, noImageArr)
+      pool.query(queryText, noImageArr)
        .then( (result) => {
            res.sendStatus(200);
        })
@@ -78,9 +78,9 @@ router.put('/edit/:id', (req, res) =>{
        })
    }
    else {
-      sqlText = `UPDATE card_info SET sport=$1, athlete=$2, team=$3, card_brand=$4, 
+      queryText = `UPDATE card_info SET sport=$1, athlete=$2, team=$3, card_brand=$4, 
       details=$5, image_url=$6 WHERE card_id=$7;`;
-      pool.query(sqlText, imageArr)
+      pool.query(queryText, imageArr)
        .then( (result) => {
            res.sendStatus(200);
        })

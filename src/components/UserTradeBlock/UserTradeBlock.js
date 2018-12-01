@@ -91,7 +91,7 @@ class UserTradeBlock extends Component {
                <TableCell className={classes.alignCenter}>{card.price}</TableCell>
                <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
                <TableCell className={classes.alignCenter}>
-                  <Button variant="contained" color="primary" className={`${classes.customBtn} ${classes.backgroundRed}`}>Remove</Button>
+                  <Button color="primary" className={`${classes.customBtn} ${classes.backgroundRed}`}>Remove</Button>
                </TableCell>
             </TableRow>
         ) : <span></span>;

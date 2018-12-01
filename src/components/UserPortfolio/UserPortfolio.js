@@ -131,7 +131,7 @@ class UserPortfolio extends Component {
                   <EditCardForm card={card} />
                </div>
                <div className={classes.floatLeft}>
-                  <Button onClick={this.deleteCard(card.card_id)} variant="contained" color="default" className={`${classes.customBtn} ${classes.backgroundRed}`}>Delete</Button>
+                  <Button onClick={this.deleteCard(card.card_id)} color="default" className={`${classes.customBtn} ${classes.backgroundRed}`}>Delete</Button>
                </div>
             </div>
          </div>

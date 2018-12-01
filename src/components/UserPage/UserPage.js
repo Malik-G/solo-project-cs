@@ -1,7 +1,34 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {storage} from '../../firebase';
+import { withStyles } from '@material-ui/core/styles';
+//import LogOutButton from '../LogOutButton/LogOutButton';
+
+const styling = theme => ({
+   customBtn: {
+      height: 10,
+      width: 80,
+      fontWeight: 'bold',
+      fontSize: 10,
+      color: 'white'
+   },
+   backgroundBlack: {
+      background: 'black'
+   },
+   backgroundGray: {
+      background: 'dimgray'
+   },
+   font20: {
+      fontSize: 20
+   },
+   alignCenter: {
+      textAlign: 'center'
+   },
+   marginTop: {
+      marginTop: 20
+   }
+
+})
 
 class UserPage extends Component { 
   
@@ -43,22 +70,11 @@ class UserPage extends Component {
    }
   
    render(){
-      
+      const {classes} = this.props
       return (
-         <div>
-            <h1 id="welcome">
-               Welcome, { this.props.userReducer.username }!
-            </h1>
-            <p>Your ID is: {this.props.userReducer.id}</p>
-            <progress value={this.state.progress} max="100"/>
-            <br/>
-            <input type="file" onChange={this.selectImage}/>
-            <button onClick={this.uploadImage}>Upload</button>
-            <br/>
-            <div>
-               <img src={this.state.url || 'https://via.placeholder.com/200x200'} alt="Upload image" height="200" width="200"></img>
-            </div>
-            <LogOutButton className="log-in" />
+         <div className={classes.alignCenter}>
+            <h1 >
+               Welcome back, { this.props.userReducer.username }!</h1>
          </div>
       );
    }
@@ -73,4 +89,4 @@ const mapStateToProps = state => ({
 });
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(withStyles(styling)(UserPage));

@@ -50,8 +50,8 @@ class MemberTradeBlock extends Component {
    }
    
    componentDidMount () {
-      this.props.dispatch({type: 'GET_USER_PORTFOLIO', payload: this.state.user})
       this.props.dispatch({type: 'GET_WATCH_LIST', payload: this.props.userReducer.id})
+      this.props.dispatch({type: 'GET_USER_PORTFOLIO', payload: this.state.user})
       this.props.dispatch({type: 'GET_USERNAME', payload: this.state.user})
       
    }
@@ -74,26 +74,15 @@ class MemberTradeBlock extends Component {
    }
    
    render(){
+      const {classes} = this.props
       
       console.log(this.state.user);
       console.log(this.props.memberUsername[0])
 
-      const {classes} = this.props
-
-      // let imagesArray;
-      // if(this.props && this.props.portfolioReducer.length > 0 ){
-      //    this.props.portfolioReducer.map(card=>
-      //       imagesArray = <div>
-      //          <img src={card.image_url}/>
-      //       </div>
-      // )}
-      // else { 
-      //    imagesArray = <span></span>
-      // }
-      
-      //let matchCard = card => card.trade_block === true;
-      // const tradeBlockArr = this.props.portfolioReducer.filter(matchCard);
       let tradeBlockArr = []
+      let tradeBlockInsert;
+      let tableHeadInfo;
+      
       this.props.portfolioReducer.map(card => {
          if(card.trade_block === true){
             tradeBlockArr.push(card);
@@ -102,23 +91,41 @@ class MemberTradeBlock extends Component {
 
 
       console.log(tradeBlockArr);
-      let tradeBlockInsert = this.props && this.props.portfolioReducer.length > 0 ?
-        tradeBlockArr.map(card=>
-            <TableRow key={card.id}>
-               <TableCell className={classes.alignCenter}>
-                  <img onClick={this.cardInfo(card)} src={card.image_url} className={classes.sizeImg} />
-               </TableCell>
-               <TableCell className={classes.alignCenter}>{card.athlete}</TableCell>
-               <TableCell className={classes.alignCenter}>{card.team}</TableCell>
-               <TableCell className={classes.alignCenter}>{card.card_brand}</TableCell>
-               <TableCell className={classes.alignCenter}>{card.price}</TableCell>
-               <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
-               <TableCell className={classes.alignCenter}>
-                  <WatchButton cardId={card.card_id}/>
-                  {/* <Button onClick={this.updateWatch(card.card_id)} className={`${classes.customBtn} ${classes.backgroundGold}`} variant="contained">Watch</Button> */}
-               </TableCell>
+      if(tradeBlockArr.length === 0){
+         tableHeadInfo = <br></br>
+         tradeBlockInsert = <p className={classes.alignCenter}>No cards currently on this user's trade block, but take a look at their porfolio!</p>
+      }
+      else {
+         tableHeadInfo = <TableHead>
+            <TableRow >
+               <TableCell className={classes.alignCenter}>Image</TableCell>
+               <TableCell className={classes.alignCenter}>Athlete</TableCell>
+               <TableCell className={classes.alignCenter}>Team</TableCell>
+               <TableCell className={classes.alignCenter}>Card Brand</TableCell>
+               <TableCell className={classes.alignCenter}>Price</TableCell>
+               <TableCell className={classes.alignCenter}>Date Posted</TableCell>
+               <TableCell className={classes.alignCenter}>Watch</TableCell>
             </TableRow>
-        ) : <span></span>;
+         </TableHead> 
+         
+         tradeBlockInsert = this.props && this.props.portfolioReducer.length > 0  ?
+            tradeBlockArr.map(card=>
+               <TableRow key={card.id}>
+                  <TableCell className={classes.alignCenter}>
+                     <img onClick={this.cardInfo(card)} src={card.image_url} className={classes.sizeImg} />
+                  </TableCell>
+                  <TableCell className={classes.alignCenter}>{card.athlete}</TableCell>
+                  <TableCell className={classes.alignCenter}>{card.team}</TableCell>
+                  <TableCell className={classes.alignCenter}>{card.card_brand}</TableCell>
+                  <TableCell className={classes.alignCenter}>{card.price}</TableCell>
+                  <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
+                  <TableCell className={classes.alignCenter}>
+                     <WatchButton cardId={card.card_id} owner={this.props.userReducer.id}/>
+                  </TableCell>
+               </TableRow>
+            ) : <span>Null</span>;
+      }
+      
 
         let headerDisplay = this.props && this.props.memberUsername.length > 0 ?
       
@@ -133,18 +140,8 @@ class MemberTradeBlock extends Component {
                {headerDisplay}
             </section>
             <Table>
-               <TableHead>
-                  <TableRow >
-                     <TableCell className={classes.alignCenter}>Image</TableCell>
-                     <TableCell className={classes.alignCenter}>Athlete</TableCell>
-                     <TableCell className={classes.alignCenter}>Team</TableCell>
-                     <TableCell className={classes.alignCenter}>Card Brand</TableCell>
-                     <TableCell className={classes.alignCenter}>Price</TableCell>
-                     <TableCell className={classes.alignCenter}>Date Posted</TableCell>
-                     <TableCell className={classes.alignCenter}>Watch</TableCell>
-                  </TableRow>
-               </TableHead>
-               <TableBody >
+               {tableHeadInfo}
+               <TableBody>
                   {tradeBlockInsert}
                </TableBody>
             </Table>
@@ -159,6 +156,7 @@ const mapStateToProps = state => ({
    userReducer: state.userReducer,
    memberUsername: state.portfolioReducer.memberUsernameReducer,
    portfolioReducer: state.portfolioReducer.portfolioReducer,
+   watchListReducer: state.watchListReducer
 });
 
 // const mapStateToProps = reduxState => ({

@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 
+
 const styling = theme => ({
    customBtn: {
       height: 10,
@@ -16,14 +17,14 @@ const styling = theme => ({
       height: 230,
       width: 150
    },
-   backgroundBlack: {
-      background: 'black'
-   },
-   backgroundGray: {
-      background: 'dimgray'
+   backgroundRed: {
+      background: 'firebrick'
    },
    backgroundGold: {
       background: 'gold'
+   },
+   blackFont: {
+      color: 'black'
    },
    font20: {
       fontSize: 20
@@ -40,46 +41,58 @@ const styling = theme => ({
 
 class WatchButton extends Component {
    
-   // state = {
-   //    user: this.props.match.params.id
-   // }
-   
-   componentDidMount () {
-      this.props.dispatch({type: 'GET_WATCH_LIST', payload: this.props.userReducer.id})
-   }
-
-   // cardInfo = (card) => {
-   //    return (event) => {
-   //       alert(`Sport: ${card.sport}
-   //       \nDetails: ${card.details}`);
-   //    }
+   // componentDidMount = () => {
+   //    this.props.dispatch({type: 'GET_WATCH_LIST', payload:this.props.userReducer.id})
    // }
 
    updateWatch = (id) => {
-      this.props.dispatch({
-         type: 'UPDATE_WATCH_LIST',
-         payload: {
-            id_of_card: id,
-            card_owner: this.state.user
-         }
-      })
+      return (event) => {
+         this.props.dispatch({
+            type: 'UPDATE_WATCH_LIST',
+            payload: {
+               watch_list_owner: this.props.owner,
+               id_of_card: id,
+            }
+         })
+      }
+   }
+
+   removeWatch = (id) => {
+      return (event) => {
+         this.props.dispatch({
+            type: 'REMOVE_WATCH_LIST_ITEM',
+            payload: {
+               watch_list_owner: this.props.owner,
+               watch_list_id: id,
+            }
+         })
+      }
    }
    
    render(){
-      
+      const {classes} = this.props
       let watchButton;
       
-      // if(this.props.watchListReducer.card_id === this.props.cardId){
-         watchButton = <div>
-            <Button>Unwatch</Button>
-         </div>
-      // }
-      // else {
-      //    watchButton = <div>
-      //       <Button>Watch</Button>
-      //    </div>
-      // }
+      // className={`${classes.customBtn} ${classes.backgroundRed}`}
+      // className={`${classes.customBtn} ${classes.backgroundGold}`}
       
+      if(this.props && this.props.watchListReducer.length > 0){
+         for(let card of this.props.watchListReducer){
+            if(card.card_id === this.props.cardId){
+               return watchButton = <div>
+                  <Button onClick={this.removeWatch(card.watch_list_id)} className={`${classes.customBtn} ${classes.backgroundRed}`}>Unwatch</Button>
+               </div>
+            }
+         }
+         watchButton = <div>
+               <Button onClick={this.updateWatch(this.props.cardId)} className={`${classes.blackFont} ${classes.customBtn} ${classes.backgroundGold}`}>Watch</Button>
+            </div>
+      }
+      else {
+         watchButton = <div>
+               <Button onClick={this.updateWatch(this.props.cardId)} className={`${classes.blackFont} ${classes.customBtn} ${classes.backgroundGold}`}>Watch</Button>
+            </div>
+      }
       
       return(
          <div>
