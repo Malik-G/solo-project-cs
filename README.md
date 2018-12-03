@@ -1,9 +1,9 @@
 
-##cardSwap
+#cardSwap
 This website, cardSwap, was made to be an extension of an already exisiting e-commerce website, cardsawaysports.com.
 CardSwap attempts to address the issue of having a reliable and verifiable online source for collectors to find, post, trade, or purchase quality sports cards.
 
-##Download (Don't Clone) This Repository
+#Download (Don't Clone) This Repository
 * Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
 * Unzip the project and start with the code in that folder.
 * Create a new GitHub project and push this code to the new repository.
