@@ -40,8 +40,8 @@ const styling = theme => ({
    backgroundGray: {
       background: 'dimgray'
    },
-   backgroundOrange: {
-      background: 'orange'
+   backgroundGreen: {
+      background: 'forestgreen'
    },
    font20: {
       fontSize: 20
@@ -159,7 +159,7 @@ class AddCardForm extends Component {
          <section>
             <div className={classes.alignCenter}>
             
-               <Button onClick={this.handleOpenClick} className={ `${classes.customBtn} ${classes.backgroundOrange}`} variant="outlined">
+               <Button onClick={this.handleOpenClick} className={ `${classes.customBtn} ${classes.backgroundGray}`} variant="outlined">
                   <AddIcon className={classes.marginRight}/> Add Card
                </Button>
             </div>
@@ -238,7 +238,7 @@ class AddCardForm extends Component {
                </DialogContent>
                <DialogActions>
                   {addButton}
-                  <Button onClick={this.handleCloseClick} className={`${classes.customBtn} ${classes.backgroundGray}`} color="primary" variant="contained">Cancel</Button>
+                  <Button onClick={this.handleCloseClick} className={`${classes.customBtn} ${classes.backgroundGray}`} variant="contained">Cancel</Button>
                </DialogActions>
             </Dialog>
          </section>

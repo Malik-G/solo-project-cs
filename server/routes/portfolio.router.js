@@ -6,7 +6,7 @@ const router = express.Router();
 // GET all cards of a specific user
 router.get('/:id', (req, res) => {
    let userId = req.params.id
-   const queryText = 'SELECT * FROM card_info WHERE user_id=$1';
+   const queryText = 'SELECT * FROM card_info WHERE user_id=$1 ORDER BY athlete ASC ';
    pool.query(queryText, [userId])
      .then((result) => {
          res.send(result.rows);

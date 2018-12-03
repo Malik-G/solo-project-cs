@@ -7,6 +7,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
 
 const styling = theme => ({
    sizeImg: {
@@ -51,6 +52,35 @@ class UserTradeBlock extends Component {
          \nDetails: ${card.details}`);
       }
    }
+
+   updateTradeBlock = (card) => {
+      return (event) => {
+         swal({
+            title: "Remove from Trade Block?",
+            icon: "warning",
+            buttons: true,
+            
+          })
+         .then((willDelete) => {
+            if (willDelete) {
+               swal("Card Successfully Removed From Trade Block", {
+                  icon: "success",
+               });
+               this.props.dispatch({
+                  type: 'UPDATE_TRADE_BLOCK',
+                  payload: {
+                     user: this.props.userReducer.id,
+                     cardId: card.card_id,
+                     tbBoolean: card.trade_block,
+                  }
+               })
+            }
+            else {
+               swal("This card will remain on your trade block...");
+            }
+          });
+      }
+   }
    
    render(){
       
@@ -59,19 +89,7 @@ class UserTradeBlock extends Component {
 
       const {classes} = this.props
 
-      // let imagesArray;
-      // if(this.props && this.props.portfolioReducer.length > 0 ){
-      //    this.props.portfolioReducer.map(card=>
-      //       imagesArray = <div>
-      //          <img src={card.image_url}/>
-      //       </div>
-      // )}
-      // else { 
-      //    imagesArray = <span></span>
-      // }
-      
-      //let matchCard = card => card.trade_block === true;
-      // const tradeBlockArr = this.props.portfolioReducer.filter(matchCard);
+     
       let tradeBlockArr = []
       this.props.portfolioReducer.map(card => {
          if(card.trade_block === true){
@@ -79,6 +97,7 @@ class UserTradeBlock extends Component {
          }
       })
       console.log(tradeBlockArr);
+      
       let tradeBlockInsert = this.props && this.props.portfolioReducer.length > 0 ?
         tradeBlockArr.map(card=>
             <TableRow key={card.id}>
@@ -91,7 +110,7 @@ class UserTradeBlock extends Component {
                <TableCell className={classes.alignCenter}>{card.price}</TableCell>
                <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
                <TableCell className={classes.alignCenter}>
-                  <Button color="primary" className={`${classes.customBtn} ${classes.backgroundRed}`}>Remove</Button>
+                  <Button onClick={this.updateTradeBlock(card)} color="primary" className={`${classes.customBtn} ${classes.backgroundRed}`}>Remove</Button>
                </TableCell>
             </TableRow>
         ) : <span></span>;

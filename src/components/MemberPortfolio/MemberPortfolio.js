@@ -107,7 +107,9 @@ class MemberPortfolio extends Component {
       return(
          <section>
             {headerDisplay}
-            {portfolioArray}      
+            <div style={{margin: 'auto'}} className={classes.alignCenter}>
+               {portfolioArray} 
+            </div>     
          </section>
       );
    }

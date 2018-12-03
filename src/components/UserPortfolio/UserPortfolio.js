@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import AddCardForm from './AddCardForm';
 import EditCardForm from './EditCardForm';
+import TradeBlockButton from './TradeBlockButton';
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
 
@@ -34,7 +35,7 @@ const styling = theme => ({
       textAlign: 'center'
    },
    margin: {
-      margin: 10
+      margin: 20
    },
    marginTop: {
       marginTop: 50
@@ -51,8 +52,14 @@ const styling = theme => ({
    },
    floatRight: {
       float: 'right'
+   },
+   tradeBlockBtn: {
+      width: 40,
+      background: 'orange',
+      color: 'black'
    }
 })
+
 
 class UserPortfolio extends Component {
    
@@ -133,6 +140,9 @@ class UserPortfolio extends Component {
                <div className={classes.floatLeft}>
                   <Button onClick={this.deleteCard(card.card_id)} color="default" className={`${classes.customBtn} ${classes.backgroundRed}`}>Delete</Button>
                </div>
+               <div className={classes.floatLeft}>
+                  <TradeBlockButton card={card}/>
+               </div>
             </div>
          </div>
         ) : <span></span>;
@@ -141,7 +151,9 @@ class UserPortfolio extends Component {
          <section>
             <h1 className={classes.alignCenter}>Your Portfolio</h1>
             <AddCardForm/> 
-            {portfolioArray}      
+            <div style={{margin: 'auto'}} className={classes.alignCenter}>
+               {portfolioArray}
+            </div>      
          </section>
       );
    }

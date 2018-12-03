@@ -16,7 +16,7 @@ const Nav = (props) => (
         and call this link 'Login / Register' if they are not */}
         {props.userReducer.id ? 'Home' : 'Login / Register'}
       </Link>
-      {/* Show the link to the user trade block, portfolio, community, and the logout button if the user is logged in */}
+      {/* Show link to the user trade block, portfolio, community, and the logout button if the user is logged in */}
       {props.userReducer.id && (
         <>
           <Link className="nav-link" to="/trade-block">

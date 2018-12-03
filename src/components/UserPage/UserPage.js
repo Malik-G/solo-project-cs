@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {storage} from '../../firebase';
 import { withStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 //import LogOutButton from '../LogOutButton/LogOutButton';
 
 const styling = theme => ({
@@ -12,11 +14,27 @@ const styling = theme => ({
       fontSize: 10,
       color: 'white'
    },
+   squares: {
+      border: '3px solid black',
+      margin: 20,
+      height: 200,
+      width: 200,
+      color: 'black',
+      background: 'grey',
+      textAlign:'center'
+   },
+   squareContainer: {
+      width: 800,
+      margin:'auto'
+   },
    backgroundBlack: {
       background: 'black'
    },
    backgroundGray: {
       background: 'dimgray'
+   },
+   inlineBlock: {
+      display: 'inline-block'
    },
    font20: {
       fontSize: 20
@@ -38,43 +56,73 @@ class UserPage extends Component {
       progress: 0
    }
 
-   selectImage = (event) => {
-      if (event.target.files[0]) {
-         const targetImage = event.target.files[0]
-         this.setState({image: targetImage})
-      }
+   toTradeBlock = () => {
+      this.props.history.push('/trade-block')
    }
 
-   uploadImage = () => {
-      console.log(this.state);
-      //ref has a function called put
-      const uploadTask = storage.ref(`images/${this.state.image.name}`).put(this.state.image);
-      //uploadTask.on('state_changed', progess, error, complete) //this is the format of the parameters, they are functions;
-      uploadTask.on('state_changed',
-      (snapshot) => {
-         //progress function parameter
-         const thisProgess = Math.round((snapshot.bytesTransferred / snapshot.totalBytes * 100)) //snapshot has a property of bytesTransferred
-         this.setState({progress: thisProgess})
-      },
-      (error) => {
-         //error function parameter
-         console.log(error)
-      },
-      (complete) => {
-         //complete function parameter
-         storage.ref('images').child(this.state.image.name).getDownloadURL().then(thisUrl => {
-            console.log(thisUrl);
-            this.setState({url: thisUrl})
-         })
-      });
+   toPortfolio = () => {
+      this.props.history.push('/user-portfolio')
+   }
+
+   toWatchlist = () => {
+      this.props.history.push('/watch-list')
+   }
+
+   toCommunity = () => {
+      this.props.history.push('/community')
+   }
+
+   toSettings = () => {
+      this.props.history.push('/settings')
    }
   
    render(){
       const {classes} = this.props
+      let navSquares;
+      
+      if(this.props.userReducer.id) { 
+         navSquares = <div className={` ${classes.squareContainer}`}>
+            <Grid container>
+               <Grid item xs={4}>
+                  <div onClick={this.toTradeBlock} className={`${classes.squares} ${classes.inlineBlock}`}>
+                     <p>Trade Block</p>
+                  </div>
+               </Grid>
+               <Grid item xs = {4}>
+                  <div onClick={this.toPortfolio} className={`${classes.squares} ${classes.inlineBlock}`}>
+                     <p>Portfolio</p>
+                  </div>
+               </Grid>
+               <Grid item xs = {4}>
+                  <div onClick={this.toWatchlist} className={`${classes.squares} ${classes.inlineBlock}`}>
+                     <p>Watch List</p>
+                  </div>
+               </Grid>
+               <Grid container className={classes.alignCenter}>
+                  <Grid item xs = {6}>
+                     <div onClick={this.toCommunity} className={`${classes.squares} ${classes.inlineBlock}`}>
+                        <p>Community</p>
+                     </div>
+                  </Grid>
+                  <Grid item xs = {6}>
+                     <div onClick={this.toSettings} className={`${classes.squares} ${classes.inlineBlock}`}>
+                        <p>Settings</p>
+                     </div>
+                  </Grid>
+               </Grid>
+            </Grid>
+         </div>
+      }
+      else {
+         navSquares = <div></div>;
+      }
+      
       return (
-         <div className={classes.alignCenter}>
-            <h1 >
-               Welcome back, { this.props.userReducer.username }!</h1>
+         <div>
+            <div className={classes.alignCenter}>
+               <h1>Welcome back, { this.props.userReducer.username }!</h1>
+            </div>
+            {navSquares}
          </div>
       );
    }
