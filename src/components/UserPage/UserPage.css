@@ -1,0 +1,16 @@
+@keyframes example {
+   0%   {left:0px; top:0px;}
+   25%  {left:10px; top:0px;}
+   50%  {left:10px; top:10px;}
+   75%  {left:0px; top:10px;}
+   100% {left:0px; top:0px;}
+}
+
+.homeSquare:hover {
+   position: relative;
+   /* background-color: red; */
+   animation-name: example;
+   animation-duration: 0.5s;
+   animation-iteration-count: infinite
+}
+

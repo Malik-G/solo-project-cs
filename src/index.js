@@ -10,6 +10,10 @@ import rootSaga from './redux/sagas'; // imports ./redux/sagas/index.js
 
 import App from './components/App/App';
 
+//Fonts
+import 'typeface-alegreya-sans-sc';
+import 'typeface-abel';
+
 const sagaMiddleware = createSagaMiddleware();
 
 // this line creates an array of all of redux middleware you want to use

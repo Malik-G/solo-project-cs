@@ -75,8 +75,8 @@ class CommunityPage extends Component {
                   </div>
                </TableCell>
                <TableCell className={classes.alignCenter}>{member.count}</TableCell>
-               <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
-               <TableCell className={classes.alignCenter}>Top Card #2</TableCell>
+               {/* <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
+               <TableCell className={classes.alignCenter}>Top Card #2</TableCell> */}
                <TableCell className={classes.alignCenter}>
                   <MessageButton member={member.id}/>
                   {/* <Button variant="contained" color="primary" className={classes.customBtn}>Message</Button> */}
@@ -94,8 +94,8 @@ class CommunityPage extends Component {
                <TableRow >
                   <TableCell className={classes.alignCenter}>User</TableCell>
                   <TableCell className={classes.alignCenter}>Number of Cards</TableCell>
-                  <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
-                  <TableCell className={classes.alignCenter}>Top Card #2</TableCell>
+                  {/* <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
+                  <TableCell className={classes.alignCenter}>Top Card #2</TableCell> */}
                   <TableCell className={classes.alignCenter}>Message</TableCell>
                </TableRow>
             </TableHead>

@@ -8,9 +8,20 @@ import React from 'react';
 const AboutPage = () => (
   <div>
     <div>
-      <p>
-        This about page is for anyone to read!
-      </p>
+      <ul >Technologies Used:
+        <li>Javascript</li>
+        <li>Node.js</li>
+        <li>Express.js</li>
+        <li>React w/ Redux and Sagas</li>
+        <li>Material-UI</li>
+        <li>HTML/CSS</li>
+      </ul>
+      <ul>Future Verisons:
+        <li>Payment system</li>
+        <li>Messaging</li>
+        <li>Allow users to display their top cards on the Community page</li>
+        <li>Additional Styling and animations</li>
+      </ul>
     </div>
   </div>
 );

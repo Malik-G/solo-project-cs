@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {storage} from '../../firebase';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-//import LogOutButton from '../LogOutButton/LogOutButton';
+import './UserPage.css'
 
 const styling = theme => ({
    customBtn: {
@@ -21,7 +21,9 @@ const styling = theme => ({
       width: 200,
       color: 'black',
       background: 'grey',
-      textAlign:'center'
+      textAlign:'center',
+      fontFamily: 'Alegreya Sans SC',
+      fontSize: 40
    },
    squareContainer: {
       width: 800,
@@ -83,28 +85,28 @@ class UserPage extends Component {
       if(this.props.userReducer.id) { 
          navSquares = <div className={` ${classes.squareContainer}`}>
             <Grid container>
-               <Grid item xs={4}>
+               <Grid className="homeSquare" item xs={4}>
                   <div onClick={this.toTradeBlock} className={`${classes.squares} ${classes.inlineBlock}`}>
                      <p>Trade Block</p>
                   </div>
                </Grid>
-               <Grid item xs = {4}>
+               <Grid className="homeSquare" item xs = {4}>
                   <div onClick={this.toPortfolio} className={`${classes.squares} ${classes.inlineBlock}`}>
                      <p>Portfolio</p>
                   </div>
                </Grid>
-               <Grid item xs = {4}>
+               <Grid className="homeSquare" item xs = {4}>
                   <div onClick={this.toWatchlist} className={`${classes.squares} ${classes.inlineBlock}`}>
                      <p>Watch List</p>
                   </div>
                </Grid>
                <Grid container className={classes.alignCenter}>
-                  <Grid item xs = {6}>
+                  <Grid className="homeSquare" item xs = {6}>
                      <div onClick={this.toCommunity} className={`${classes.squares} ${classes.inlineBlock}`}>
                         <p>Community</p>
                      </div>
                   </Grid>
-                  <Grid item xs = {6}>
+                  <Grid className="homeSquare" item xs = {6}>
                      <div onClick={this.toSettings} className={`${classes.squares} ${classes.inlineBlock}`}>
                         <p>Settings</p>
                      </div>
@@ -118,7 +120,7 @@ class UserPage extends Component {
       }
       
       return (
-         <div>
+         <div >
             <div className={classes.alignCenter}>
                <h1>Welcome back, { this.props.userReducer.username }!</h1>
             </div>
