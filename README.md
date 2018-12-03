@@ -1,39 +1,62 @@
-# Prime Project
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
+#cardSwap
+This website, cardSwap, was made to be an extension of an already exisiting e-commerce website, cardsawaysports.com.
+CardSwap attempts to address the issue of having a reliable and verifiable online source for collectors to find, post, trade, or purchase quality sports cards.
 
-## Download (Don't Clone) This Repository
-
+##Download (Don't Clone) This Repository
 * Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
 * Unzip the project and start with the code in that folder.
 * Create a new GitHub project and push this code to the new repository.
 
 ## Prerequisites
-
 Before you get started, make sure you have the following software installed on your computer:
 
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
-
-Create a new database called `prime_app` and create a `person` table:
+## Create database and tables
+Create a new database called `card_swap` and create the tables `user_auth`, `user_info`, `card_info`, and `watch_list`:
 
 ```SQL
-CREATE TABLE "person" (
+CREATE TABLE "user_auth" (
     "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "username" VARCHAR (50) UNIQUE NOT NULL,
+    "password" VARCHAR (100) NOT NULL
+);
+CREATE TABLE "user_info" (
+    "user_id" INT REFERENCES user_auth,
+    "street" VARCHAR (100) NOT NULL,
+    "city" VARCHAR (100) NOT NULL,
+    "state" VARCHAR (100) NOT NULL,
+    "zip" VARCHAR (20) NOT NULL,
+    "phone" VARCHAR (20) NOT NULL,
+    "email" VARCHAR (100)
+);
+CREATE TABLE "card_info" (
+	"card_id" SERIAL PRIMARY KEY,
+	"user_id" INT REFERENCES user_auth,
+	"sport" VARCHAR (50) NOT NULL,
+	"athlete" VARCHAR (100) NOT NULL,
+	"team" VARCHAR (100) NOT NULL,
+	"card_brand" VARCHAR (100) NOT NULL,
+	"trade_block" BOOLEAN NOT NULL,
+	"price" VARCHAR (20),
+	"details" VARCHAR (1000),
+	"image_url" VARCHAR (300),
+	"date" TIMESTAMP DEFAULT NOW() NOT NULL
+);
+CREATE TABLE "watch_list" (
+	"watch_list_id" SERIAL PRIMARY KEY,
+	"watch_list_owner" INT REFERENCES user_auth NOT NULL,
+	"id_of_card" INT REFERENCES card_info
 );
 ```
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
+If you would like to name your database something else, you will need to change `card_swap` to the name of your new database name in `server/modules/pool.js`. Test data for these tables are included in the `database.sql` file.
 
 ## Development Setup Instructions
-
-* Run `npm install`
+* Run `npm install`. Look at the `package.json` file to see the full list of dependencies for this application.
 * Create a `.env` file at the root of the project and paste this line into the file:
     ```
     SERVER_SESSION_SECRET=superDuperSecret
@@ -43,17 +66,6 @@ If you would like to name your database something else, you will need to change 
 * Run `npm run server`
 * Run `npm run client`
 * Navigate to `localhost:3000`
-
-## Debugging
-
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
-
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
-
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
-
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
-
 
 ## Production Build
 
@@ -70,22 +82,9 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 * `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
 * `server/` contains the Express App
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
-
-* src/components
-  * App/App
-  * Footer/Footer
-  * Nav/Nav
-  * AboutPage/AboutPage
-  * InfoPage/InfoPage
-  * UserPage/UserPage
-  * LoginPage/LoginPage
-  * RegisterPage/RegisterPage
-  * LogOutButton/LogOutButton
-  * ProtectedRoute/ProtectedRoute
+This code is heavily commented. I recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
 
 ## Deployment
-
 1. Create a new Heroku project
 1. Link the Heroku project to the project GitHub Repo
 1. Create an Heroku Postgres database
@@ -94,6 +93,3 @@ This code is also heavily commented. We recommend reading through the comments, 
 1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
 1. In the deploy section, select manual deploy
 
-## Update Documentation
-
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
