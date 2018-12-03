@@ -7,7 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
-import MessageButton from './MessageButton'
+import MessageButton from './MessageButton';
+import Nav from '../Nav/Nav';
 
 const styling = theme => ({
    customBtn: {
@@ -74,9 +75,9 @@ class CommunityPage extends Component {
                      <Button onClick={this.goToTradeBlock(member.id)} className={`${classes.customBtn} ${classes.backgroundGray}`}>Trade Block</Button>
                   </div>
                </TableCell>
-               <TableCell className={classes.alignCenter}>{member.count}</TableCell>
-               {/* <TableCell className={classes.alignCenter}>Top Card #1</TableCell>
-               <TableCell className={classes.alignCenter}>Top Card #2</TableCell> */}
+               <TableCell className={`${classes.alignCenter} ${classes.font20}`}>{member.count}</TableCell>
+               {/* <TableCell className={classes.alignCenter}>Top Card #1</TableCell> */}
+               {/* <TableCell className={classes.alignCenter}>Top Card #2</TableCell> */}
                <TableCell className={classes.alignCenter}>
                   <MessageButton member={member.id}/>
                   {/* <Button variant="contained" color="primary" className={classes.customBtn}>Message</Button> */}
@@ -86,6 +87,7 @@ class CommunityPage extends Component {
       
       return(
          <div>
+         <Nav/>
          <section>
             <h1 className={classes.alignCenter}>Community</h1>
          </section>

@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 // import Button from '@material-ui/core/Button';
 import WatchButton from './WatchButton';
+import Nav from '../Nav/Nav';
 
 const styling = theme => ({
    customBtn: {
@@ -136,6 +137,7 @@ class MemberTradeBlock extends Component {
       
       return(
          <div>
+            <Nav/>
             <section>
                {headerDisplay}
             </section>

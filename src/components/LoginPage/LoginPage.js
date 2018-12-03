@@ -40,6 +40,9 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
+        <div>
+           <h2>cardSwap</h2>
+        </div>
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
+import Nav from '../Nav/Nav';
 
 const styling = theme => ({
    sizeImg: {
@@ -106,6 +107,7 @@ class MemberPortfolio extends Component {
       
       return(
          <section>
+            <Nav/>
             {headerDisplay}
             <div style={{margin: 'auto'}} className={classes.alignCenter}>
                {portfolioArray} 

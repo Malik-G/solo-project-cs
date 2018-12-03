@@ -8,6 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
+import Nav from '../Nav/Nav';
 
 const styling = theme => ({
    sizeImg: {
@@ -158,6 +159,7 @@ class UserTradeBlock extends Component {
          // </div>
 
          <div>
+            <Nav/>
             <section>
                <h1 className={classes.alignCenter}>Your Trade Block</h1>
             </section>

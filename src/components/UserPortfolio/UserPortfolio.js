@@ -6,6 +6,7 @@ import EditCardForm from './EditCardForm';
 import TradeBlockButton from './TradeBlockButton';
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
+import Nav from '../Nav/Nav';
 
 const styling = theme => ({
    sizeImg: {
@@ -149,6 +150,7 @@ class UserPortfolio extends Component {
       
       return(
          <section>
+            <Nav/>
             <h1 className={classes.alignCenter}>Your Portfolio</h1>
             <AddCardForm/> 
             <div style={{margin: 'auto'}} className={classes.alignCenter}>

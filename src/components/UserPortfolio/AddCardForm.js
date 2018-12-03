@@ -105,7 +105,8 @@ class AddCardForm extends Component {
       console.log(this.state);
       if(this.state.image === null){
          alert(`- Please select an image for the card.
-               \n- For best quality, frame your image to the size of the card and use good lighting.`);
+               \n- For best quality, frame your image to the size of the card and use good lighting.
+               \n- Images turn out best if scanned or taken with a high resolution camera`);
          return
       }
       //ref has a function called put

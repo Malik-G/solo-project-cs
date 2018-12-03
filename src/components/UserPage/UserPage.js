@@ -5,10 +5,12 @@ import {storage} from '../../firebase';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import './UserPage.css'
+import Nav from '../Nav/Nav';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 const styling = theme => ({
    customBtn: {
-      height: 10,
+      height: 40,
       width: 80,
       fontWeight: 'bold',
       fontSize: 10,
@@ -34,6 +36,9 @@ const styling = theme => ({
    },
    backgroundGray: {
       background: 'dimgray'
+   },
+   backgroundRed: {
+      background: 'firebrick'
    },
    inlineBlock: {
       display: 'inline-block'
@@ -121,6 +126,10 @@ class UserPage extends Component {
       
       return (
          <div >
+            <div>
+               <h2>cardSwap</h2>
+               <LogOutButton className={`${classes.customBtn} ${classes.backgroundRed}`}/>
+            </div>
             <div className={classes.alignCenter}>
                <h1>Welcome back, { this.props.userReducer.username }!</h1>
             </div>

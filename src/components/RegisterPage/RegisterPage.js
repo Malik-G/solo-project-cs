@@ -40,6 +40,9 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
+        <div>
+         <h2>cardSwap</h2>
+        </div>
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
           <div>
