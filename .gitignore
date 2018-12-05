@@ -34,7 +34,9 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+
+###CONSIDER UNCOMMENTING WHEN NOT DEVELOPING FOR HEROKU###
+# build/Release
 
 # Dependency directories
 node_modules/
