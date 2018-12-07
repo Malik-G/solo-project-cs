@@ -35,8 +35,8 @@ bower_components
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 
-###CONSIDER UNCOMMENTING WHEN NOT DEVELOPING FOR HEROKU###
-# build/Release
+###CONSIDER UNCOMMENTING/COMMENTING WHEN DEVELOPING FOR HEROKU###
+build/Release
 
 # Dependency directories
 node_modules/

@@ -265,7 +265,7 @@ class EditCardForm extends Component {
                   </form>
                </DialogContent>
                <DialogActions>
-               <Button onClick={this.confirmUpdate} variant="contained"  className={`${classes.customBtn} ${classes.backgroundGreen}`}>Confirm</Button>
+                  <Button onClick={this.confirmUpdate} variant="contained"  className={`${classes.customBtn} ${classes.backgroundGreen}`}>Confirm</Button>
                   <Button onClick={this.handleCloseClick} className={`${classes.customBtn} ${classes.backgroundGray}`} >Cancel</Button>
                </DialogActions>
             </Dialog>

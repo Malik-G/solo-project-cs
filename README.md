@@ -95,12 +95,9 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 This code is heavily commented. I recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
 
-## Deployment
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+## Future Versions
+* Payment system
+* Messaging
+* Allow users to display their top cards on the Community page
+* Additional styling and animations
 
