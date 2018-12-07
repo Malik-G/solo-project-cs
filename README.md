@@ -1,5 +1,8 @@
 # CardSwap
-This website, cardSwap, was made to be an extension of an already exisiting e-commerce website, [cardsawaysports](https://www.cardsawaysports.com/). CardSwap attempts to address the issue of having a reliable and verifiable online source for collectors to find, post, trade, or purchase quality sports cards.
+This website, [cardSwap](https://young-sea-76614.herokuapp.com/#/home), was made to be an extension of an already exisiting e-commerce website, [cardsawaysports](https://www.cardsawaysports.com/). CardSwap attempts to address the issue of having a reliable and verifiable online source for collectors to find, post, trade, or purchase quality sports cards.
+
+## View
+* Register a new account to interact with the site, or use USERNAME: `malik` and PASSWORD: `malikg1` to interact as an existing user.
 
 ## Download (Don't Clone) This Repository
 * Don't Fork or Clone. Instead, click the `Clone or Download` button and select `Download Zip`.
