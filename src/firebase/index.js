@@ -1,9 +1,10 @@
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import api_key from './api_key';
 
 // Initialize Firebase
 var config = {
-   apiKey: "AIzaSyDdi3EMOD03Z9PTBn_HBtjikc42aMvXtMM",
+   apiKey: api_key,
    authDomain: "card-swap-72684.firebaseapp.com",
    databaseURL: "https://card-swap-72684.firebaseio.com",
    projectId: "card-swap-72684",
