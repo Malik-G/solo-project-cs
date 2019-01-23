@@ -31,6 +31,9 @@ const Nav = (props) => (
           <Link className="nav-link" to="/community">
             Community
           </Link>
+          <Link className="nav-link" to="/messages">
+            Messages
+          </Link>
           <LogOutButton className="nav-link"/>
         </>
       )}

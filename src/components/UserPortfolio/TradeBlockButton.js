@@ -62,12 +62,6 @@ const styling = theme => ({
 })
 
 
-// const emptyState = {
-//    user: '',
-//    cardID: 0,
-//    tbBoolean:
-// }
-
 class TradeBlockButton extends Component {
    
    state = {

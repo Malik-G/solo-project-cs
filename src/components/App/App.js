@@ -21,6 +21,7 @@ import MemberTradeBlock from '../MemberTradeBlock/MemberTradeBlock';
 import MemberPortfolio from '../MemberPortfolio/MemberPortfolio';
 import WatchList from '../WatchList/WatchList';
 import CommunityPage from '../CommunityPage/CommunityPage';
+import Messages from '../Messages/Messages';
 
 import './App.css';
 
@@ -84,6 +85,11 @@ class App extends Component {
               exact
               path="/member-trade-block/:id"
               component={MemberTradeBlock}
+            />
+            <ProtectedRoute
+              exact
+              path="/messages"
+              component={Messages}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
