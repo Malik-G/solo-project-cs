@@ -113,17 +113,6 @@ class UserPortfolio extends Component {
       
       console.log(this.props.portfolioReducer);
       const {classes} = this.props
-
-      // let imagesArray;
-      // if(this.props && this.props.portfolioReducer.length > 0 ){
-      //    this.props.portfolioReducer.map(card=>
-      //       imagesArray = <div>
-      //          <img src={card.image_url}/>
-      //       </div>
-      // )}
-      // else { 
-      //    imagesArray = <span></span>
-      // }
       
       // Conditional rendering to display each card
       let portfolioArray = this.props && this.props.portfolioReducer.length > 0 ?

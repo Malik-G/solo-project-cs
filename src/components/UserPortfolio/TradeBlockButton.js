@@ -26,6 +26,9 @@ const styling = theme => ({
       height: 230,
       width: 150
    },
+   backgroundGray: {
+      background: 'dimgray'
+   },
    backgroundRed: {
       background: 'firebrick'
    },
@@ -91,7 +94,9 @@ class TradeBlockButton extends Component {
                swal("Card Successfully Removed From Trade Block", {
                   icon: "success",
                });
+               console.log(this.state.tbBoolean)
                this.props.dispatch({type: 'UPDATE_TRADE_BLOCK', payload: this.state})
+               this.setState({tbBoolean: false})
             }
             else {
                swal("This card will remain on your trade block...");
@@ -101,11 +106,12 @@ class TradeBlockButton extends Component {
    }
    
    confirmUpdate = () => {
+      console.log(this.state.tbBoolean)
       this.props.dispatch({
          type: 'UPDATE_TRADE_BLOCK',
          payload: this.state
       })
-      this.setState({open: false});
+      this.setState({open: false, tbBoolean: true});
    }
    
    handleCloseClick = () => {
