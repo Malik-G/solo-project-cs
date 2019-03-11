@@ -64,7 +64,7 @@ class CommunityPage extends Component {
       const {classes} = this.props
       
       let communityInsert = this.props && this.props.communityReducer.length > 0 ?
-        this.props.communityReducer.map(member=>
+         this.props.communityReducer.filter(member2 => member2.id !== this.props.userReducer.id).map(member=>
             <TableRow key={member.id}>
                <TableCell className={`${classes.font20} ${classes.alignCenter}`}>
                   <div className={classes.marginTop}>

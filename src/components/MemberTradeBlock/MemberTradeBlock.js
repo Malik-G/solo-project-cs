@@ -118,7 +118,7 @@ class MemberTradeBlock extends Component {
                   <TableCell className={classes.alignCenter}>{card.athlete}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.team}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.card_brand}</TableCell>
-                  <TableCell className={classes.alignCenter}>{card.price}</TableCell>
+                  <TableCell className={classes.alignCenter}>${card.price}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
                   <TableCell className={classes.alignCenter}>
                      <WatchButton cardId={card.card_id} owner={this.props.userReducer.id}/>

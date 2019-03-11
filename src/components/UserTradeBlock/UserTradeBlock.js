@@ -126,7 +126,7 @@ class UserTradeBlock extends Component {
                   <TableCell className={classes.alignCenter}>{card.athlete}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.team}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.card_brand}</TableCell>
-                  <TableCell className={classes.alignCenter}>{card.price}</TableCell>
+                  <TableCell className={classes.alignCenter}>${card.price}</TableCell>
                   <TableCell className={classes.alignCenter}>{card.date.substring(0,10)}</TableCell>
                   <TableCell className={classes.alignCenter}>
                      <Button onClick={this.updateTradeBlock(card)} color="primary" className={`${classes.customBtn} ${classes.backgroundRed}`}>Remove</Button>
@@ -136,28 +136,6 @@ class UserTradeBlock extends Component {
       }
       
       return(
-         // <div>
-         // <section>
-         //    <h1 className={classes.alignCenter}>Your Trade Block</h1>
-         // </section>
-         // <Table>
-         //    <TableHead>
-         //       <TableRow >
-         //       <TableCell className={classes.alignCenter}>Image</TableCell>
-         //          <TableCell className={classes.alignCenter}>Athlete</TableCell>
-         //          <TableCell className={classes.alignCenter}>Team</TableCell>
-         //          <TableCell className={classes.alignCenter}>Card Brand</TableCell>
-         //          <TableCell className={classes.alignCenter}>Price</TableCell>
-         //          <TableCell className={classes.alignCenter}>Date Posted</TableCell>
-         //          <TableCell className={classes.alignCenter}>Remove</TableCell>
-         //       </TableRow>
-         //    </TableHead>
-         //    <TableBody >
-         //       {tradeBlockInsert}
-         //    </TableBody>
-         // </Table>
-         // </div>
-
          <div>
             <Nav/>
             <section>
@@ -170,7 +148,6 @@ class UserTradeBlock extends Component {
                </TableBody>
             </Table>
          </div>
-         
       );
    }
 }
@@ -181,6 +158,7 @@ const mapStateToProps = state => ({
    portfolioReducer: state.portfolioReducer.portfolioReducer,
 });
 
+// // alternative code
 // const mapStateToProps = reduxState => ({
 //    reduxState
 // });

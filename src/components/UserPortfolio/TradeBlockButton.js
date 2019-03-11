@@ -12,6 +12,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import swal from 'sweetalert';
 
 const styling = theme => ({
@@ -119,18 +122,10 @@ class TradeBlockButton extends Component {
       });
    }
    
-   // removeFromBlock = (id) => {
-   //    return (event) => {
-         
-   //    }
-   // }
-   
    render(){
       const {classes} = this.props
       let tradeBlockBtn;
-      
-      // className={`${classes.customBtn} ${classes.backgroundRed}`}
-      // className={`${classes.customBtn} ${classes.backgroundGold}`}
+
       
       if(this.props && this.props.portfolioReducer.length > 0){
          if(this.props.card.trade_block === false){
@@ -147,18 +142,20 @@ class TradeBlockButton extends Component {
                >
                   <DialogTitle id="dialog-title">Add Card to Trade Block</DialogTitle>
                   <DialogContent>
-                     <DialogContentText>Choose your price!</DialogContentText>
+                     
                      <form className={`${classes.styleForm} `}>
                         <FormGroup>
                            <FormControl >
-                           <TextField
+                           <InputLabel htmlFor="outlined-price">Price</InputLabel>
+                           <Input
                                  id="outlined-price"
-                                 label="Price"
-                                 name="price"
                                  value={this.state.price}
                                  onChange={this.handleChange}
+                                 startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                                 name="price"
                                  margin="normal"
                                  variant="outlined"
+                                 type="number"
                                  required
                               />
                            </FormControl>

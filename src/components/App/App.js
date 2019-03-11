@@ -13,6 +13,7 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
+// Component imports
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import UserTradeBlock from '../UserTradeBlock/UserTradeBlock';
@@ -22,8 +23,15 @@ import MemberPortfolio from '../MemberPortfolio/MemberPortfolio';
 import WatchList from '../WatchList/WatchList';
 import CommunityPage from '../CommunityPage/CommunityPage';
 import Messages from '../Messages/Messages';
-
 import './App.css';
+
+// FontAwesome imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+//import { faPaperPlane} from '@fortawesome/free-solid-svg-icons'
+//import { faPaperPlane as farPaperPlane} from '@fortawesome/free-regular-svg-icons'
+
+//library.add()
 
 class App extends Component {
   componentDidMount () {

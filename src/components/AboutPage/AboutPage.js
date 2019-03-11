@@ -24,6 +24,9 @@ const AboutPage = () => (
         <li>Allow users to display their top cards on the Community page</li>
         <li>Additional Styling and animations</li>
       </ul>
+      <ul>Fix:
+         <li>When putting cards on the trade block, require a .50 minimum listing price </li>
+      </ul>
     </div>
   </div>
 );
