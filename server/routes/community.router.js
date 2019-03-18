@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
       GROUP BY ua.username, ua.id;`;
    pool.query(queryText)
      .then((result) => {
+         console.log('LOOK HERE FOR RESULTS!!!!!', result.rows )
+         console.log(result.rows[0].id)
          res.send(result.rows);
       })
      .catch((err) => {

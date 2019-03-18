@@ -1,0 +1,13 @@
+/* .classIconDiv {
+    transition: all .5s ease-in-out;
+}
+.classIconDiv:hover {
+   transform: scale(1.1);
+} */
+
+.icon {
+   transition: all .5s ease-in-out;
+}
+.icon:hover {
+  transform: scale(1.1);
+}

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import {storage} from '../../firebase';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import './UserPage.css'
 import Nav from '../Nav/Nav';
 import LogOutButton from '../LogOutButton/LogOutButton';
+import './UserPage.css'
 
 const styling = theme => ({
    customBtn: {

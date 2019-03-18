@@ -9,6 +9,7 @@
 .nav {
   overflow: hidden;
   background-color: rgb(40, 40, 40);
+  /* min-width: 1270px -> find out how to make nav bar width more dynamic */
 }
 
 .nav-link {

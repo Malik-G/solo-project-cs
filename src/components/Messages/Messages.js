@@ -7,10 +7,14 @@ import NewMessageIcon from '@material-ui/icons/Assignment';
 import InboxIcon from '@material-ui/icons/Email';
 import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
-import Nav from '../Nav/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane as fasPaperPlane} from '@fortawesome/free-solid-svg-icons'
-import { faPaperPlane as farPaperPlane} from '@fortawesome/free-regular-svg-icons'
+import { faPaperPlane as fasPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane as farPaperPlane} from '@fortawesome/free-regular-svg-icons';
+import Inbox from './Inbox';
+import Outbox from './Outbox';
+import Drafts from './Drafts';
+import Nav from '../Nav/Nav';
+import './Messages.css'
 
 const styling = theme => ({
    sizeImg: {
@@ -42,7 +46,8 @@ const styling = theme => ({
    margin: {
       margin: '50px auto',
       width: '80%',
-      height: 450
+      height: 450,
+      minWidth: 940,
    },
    marginTop: {
       marginTop: 50
@@ -76,36 +81,46 @@ const styling = theme => ({
    medIcon: {
       width: 100,
       height: 100,
-      position: 'absolute',
-      margin: 'auto'
-      
+
+      margin: '10% auto',
    },
    iconDiv: {
       width: 300,
       height: 300,
-      margin: 3,
-      
+      margin: 3
    },
    borderBlack: {
-      border: '2px solid black',
+      border: '1px solid black',
    },
    height150: {
-      height: 148
+      height: 150
    }
 })
 
 
-class UserPortfolio extends Component {
+class Messages extends Component {
    
    componentDidMount(){
-      this.props.dispatch({type: "GET_USER_PORTFOLIO", payload: this.props.userReducer.id}); //inside of portfolioSaga
+      this.props.dispatch({type: "GET_INBOX", payload: this.props.userReducer.id}); //inside of inboxSaga
    }
 
    newMessage = () => {
+      return (event) => {
+
+      }
+   }
+
+   outbox = () => {
+      return (event) => {
+
+      }
 
    }
 
    editDraft = () => {
+      return (event) => {
+
+      }
 
    }
    
@@ -121,23 +136,18 @@ class UserPortfolio extends Component {
       return(
          <section>
             <Nav/>
-               <div className={`${classes.margin} ${classes.alignCenter}`}>
-                  <div className={`${classes.inlineBlock} ${classes.iconDiv} ${classes.borderBlack} ${classes.floatLeft}`}>
-                     <InboxIcon fontSize="large" className={classes.largeIcon}/>
-                     {/* <FontAwesomeIcon icon={fasPaperPlane}/> */}
-                  </div>
-                  <div className={`${classes.inlineBlock} ${classes.iconDiv} ${classes.borderBlack} ${classes.floatLeft}`}>
-                     <FontAwesomeIcon icon={farPaperPlane} size="10x" className={classes.largeIcon}/>
-                  </div>
-                  <div className={`${classes.inlineBlock} ${classes.iconDiv} ${classes.floatLeft}`}>
-                     <div onClick={this.newMessage()} className={`${classes.borderBlack} ${classes.height150}`}>
-                        <NewMessageIcon className={classes.medIcon} fontSize="large"/>
-                     </div>
-                     <div onClick={this.editDraft()} size="large" className={`${classes.borderBlack} ${classes.height150}`}>
-                        <DraftIcon className={classes.medIcon}/>
-                     </div>
-                  </div>
+            <h1 className={classes.alignCenter}>Sorry, this page is currently under construction...</h1>
+            <div className={`${classes.margin} ${classes.alignCenter}`}>
+               <div className={` classIconDiv ${classes.inlineBlock} ${classes.iconDiv} ${classes.borderBlack} ${classes.floatLeft}`}>
+                  <Inbox/>
                </div>
+               <div className={` classIconDiv ${classes.inlineBlock} ${classes.iconDiv} ${classes.borderBlack} ${classes.floatLeft}`}>
+                  <Outbox/>
+               </div>
+               <div className={` classIconDiv ${classes.inlineBlock} ${classes.iconDiv} ${classes.borderBlack} ${classes.floatLeft}`}>
+                  <Drafts/>
+               </div>
+            </div>
          </section>
       );
    }
@@ -149,4 +159,4 @@ const mapStateToProps = state => ({
    //communityReducer: state.communityReducer
 });
 
-export default connect(mapStateToProps)(withStyles(styling)(UserPortfolio));
+export default connect(mapStateToProps)(withStyles(styling)(Messages));
