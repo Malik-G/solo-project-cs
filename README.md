@@ -103,4 +103,5 @@ This code is heavily commented. I recommend reading through the comments, gettin
 * Messaging
 * Allow users to display their top cards on the Community page
 * Additional styling and animations
+* Fix the trade block button bug on the user's portfolio page (currently breaks when clicked multiple times)
 
